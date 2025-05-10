@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../config/dependancy_injection.dart';
 import '../core/resources/manager_strings.dart';
+import '../features/cart/presentation/view/cart_view.dart';
+import '../features/details/presentation/view/view_details.dart';
+import '../features/home/presentation/controller/home_controller.dart';
 import '../features/home/presentation/view/home_view.dart';
 
 class Routes {
@@ -24,6 +27,14 @@ class RouteGenerator {
       case Routes.homeView:
         initHome();
         return MaterialPageRoute(builder: (_) => const HomeView());
+      case Routes.detailsView:
+        final product = settings.arguments as Product;
+        initDetailse();
+        return MaterialPageRoute(
+            builder: (_) => DetailsView(product: product));
+      case Routes.cartView:
+        initHome();
+        return MaterialPageRoute(builder: (_) => const CartView());
       default:
         return unDefineRoute();
     }

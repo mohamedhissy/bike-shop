@@ -5,5 +5,6 @@ class ManagerStrings {
   static const String chooseYourBike = 'Choose Your Bike';
   static const String off = '30% Off';
   static const String all = 'All';
+  static const String cart = 'cart';
 
 }

@@ -10,6 +10,7 @@ class ManagerAssets {
   static const String product2 = 'assets/images/home/product2.png';
   static const String product3 = 'assets/images/home/product3.png';
   static const String all = 'assets/images/home/all.png';
+  static const String pag1 = 'assets/images/peugeot/pag1.png';
 }
 
 class ManagerPaths {

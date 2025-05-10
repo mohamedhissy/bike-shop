@@ -1,3 +1,4 @@
+import 'package:bike_shop/config/dependancy_injection.dart';
 import 'package:bike_shop/core/resources/manager_colors.dart';
 import 'package:bike_shop/core/resources/manager_font_sizes.dart';
 import 'package:bike_shop/core/resources/manager_font_weight.dart';
@@ -11,6 +12,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/resources/manager_assets.dart';
+import '../../../../routes/routes.dart';
+import '../../../details/presentation/view/view_details.dart';
 
 class SlantedClipper extends CustomClipper<Path> {
   @override
@@ -302,94 +305,105 @@ class HomeView extends StatelessWidget {
                           ),
                           itemBuilder: (context, index) {
                             final product = controller.products[index];
-                            return Stack(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(16),
-                                    image: DecorationImage(
-                                      image:
-                                          AssetImage(product.backgroundImage),
-                                      fit: BoxFit.contain,
+                            return InkWell(
+                              onTap: () {
+                                initDetailse();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => DetailsView(product: product),
+                                  ),
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: DecorationImage(
+                                        image:
+                                            AssetImage(product.backgroundImage),
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  top: 10,
-                                  left: 40,
-                                  child: Transform.scale(
-                                    scale: 1.1,
-                                    child: Container(
-                                      width: 120,
-                                      height: 130,
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        borderRadius: BorderRadius.circular(16),
-                                        image: DecorationImage(
-                                          image:
-                                              AssetImage(product.productImage),
-                                          fit: BoxFit
-                                              .contain, // ❗نحتفظ بـ contain ليظهر كل الصورة
+                                  Positioned(
+                                    top: 10,
+                                    left: 40,
+                                    child: Transform.scale(
+                                      scale: 1.1,
+                                      child: Container(
+                                        width: 120,
+                                        height: 130,
+                                        decoration: BoxDecoration(
+                                          color: Colors.transparent,
+                                          borderRadius: BorderRadius.circular(16),
+                                          image: DecorationImage(
+                                            image:
+                                                AssetImage(product.productImage),
+                                            fit: BoxFit
+                                                .contain, // ❗نحتفظ بـ contain ليظهر كل الصورة
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  top: 130,
-                                  left: 30,
-                                  child: Text(
-                                    product.title,
-                                    style: TextStyle(
-                                      fontWeight: ManagerFontWeight.regular,
-                                      fontSize: ManagerFontSizes.s16,
-                                      color: ManagerColors.homeTextColor,
+                                  Positioned(
+                                    top: 130,
+                                    left: 30,
+                                    child: Text(
+                                      product.title,
+                                      style: TextStyle(
+                                        fontWeight: ManagerFontWeight.regular,
+                                        fontSize: ManagerFontSizes.s16,
+                                        color: ManagerColors.homeTextColor,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  top: 160,
-                                  left: 30,
-                                  child: Text(
-                                    product.subtitle,
-                                    style: TextStyle(
-                                      fontWeight: ManagerFontWeight.bold,
-                                      fontSize: ManagerFontSizes.s16,
-                                      color: ManagerColors.white,
+                                  Positioned(
+                                    top: 160,
+                                    left: 30,
+                                    child: Text(
+                                      product.subtitle,
+                                      style: TextStyle(
+                                        fontWeight: ManagerFontWeight.bold,
+                                        fontSize: ManagerFontSizes.s16,
+                                        color: ManagerColors.white,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  top: 190,
-                                  left: 30,
-                                  child: Text(
-                                    product.price,
-                                    style: TextStyle(
-                                      fontWeight: ManagerFontWeight.regular,
-                                      fontSize: ManagerFontSizes.s16,
-                                      color: ManagerColors.homeTextColor,
+                                  Positioned(
+                                    top: 190,
+                                    left: 30,
+                                    child: Text(
+                                      product.price,
+                                      style: TextStyle(
+                                        fontWeight: ManagerFontWeight.regular,
+                                        fontSize: ManagerFontSizes.s16,
+                                        color: ManagerColors.homeTextColor,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  top: 10,
-                                  left: 140,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      controller.toggleFavorite(index);
-                                    },
-                                    child: Obx(() => Icon(
-                                          Icons.favorite_border,
-                                          color:
-                                              controller.isFavoriteList[index]
-                                                  ? Colors.blue
-                                                  : Colors.white,
-                                          size: 30,
-                                        )),
+                                  Positioned(
+                                    top: 10,
+                                    left: 140,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        controller.toggleFavorite(index);
+                                      },
+                                      child: Obx(() => Icon(
+                                            Icons.favorite_border,
+                                            color:
+                                                controller.isFavoriteList[index]
+                                                    ? Colors.blue
+                                                    : Colors.white,
+                                            size: 30,
+                                          )),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             );
                           },
                           itemCount: controller.products.length,

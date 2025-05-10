@@ -38,6 +38,7 @@ dependencies:
   shared_preferences: ^2.2.3
   get: ^4.7.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,6 +64,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/home/
+    - assets/images/peugeot/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
